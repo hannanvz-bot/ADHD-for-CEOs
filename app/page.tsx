@@ -233,7 +233,7 @@ export default function Home() {
                 <img
                   src="/founder.jpg"
                   alt="Hannan Vilchis explaining a concept at a hackathon"
-                  className="w-full h-full object-cover object-right-top"
+                  className="w-full h-full object-contain"
                 />
                 <div
                   className="absolute inset-0"
