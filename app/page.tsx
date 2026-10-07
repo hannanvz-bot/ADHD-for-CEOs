@@ -213,9 +213,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Founder quote */}
+          {/* Founder quote + photo */}
           <FadeIn delay={200}>
-            <div className="mt-20 md:mt-28 max-w-2xl md:pl-8">
+            <div className="mt-20 md:mt-28 md:pl-8 grid md:grid-cols-[1fr_280px] gap-12 items-center">
               <div className="border-l-2 border-[#2bbfbf]/40 pl-8">
                 <p className="text-xl md:text-2xl text-white/70 font-light leading-relaxed italic">
                   &ldquo;I spent years feeling like I was too much — too many
@@ -225,6 +225,25 @@ export default function Home() {
                 </p>
                 <p className="mt-5 text-white/30 text-sm tracking-wide">
                   — Hannan Vilchis, Founder
+                </p>
+              </div>
+              {/* Founder photo */}
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] md:aspect-[3/4]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/founder.jpg"
+                  alt="Hannan Vilchis explaining a concept at a hackathon"
+                  className="w-full h-full object-cover object-center"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: "linear-gradient(to top, rgba(8,8,8,0.7) 0%, transparent 50%)",
+                  }}
+                  aria-hidden="true"
+                />
+                <p className="absolute bottom-4 left-4 text-white/40 text-xs tracking-wide">
+                  Hackathon AgroInChange · 42 Málaga, 2024
                 </p>
               </div>
             </div>

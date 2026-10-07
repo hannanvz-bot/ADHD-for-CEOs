@@ -31,12 +31,18 @@ export default function HeroVideo() {
         aria-hidden="true"
       />
 
-      {/* Gradient — vignette + strong bottom */}
+      {/* Base dark overlay — ensures text is always readable regardless of video frame */}
+      <div
+        className="absolute inset-0 bg-black/40"
+        aria-hidden="true"
+      />
+
+      {/* Gradient — stronger bottom fade */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.0) 40%, rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.92) 100%)",
+            "linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.0) 35%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.95) 100%)",
         }}
         aria-hidden="true"
       />
