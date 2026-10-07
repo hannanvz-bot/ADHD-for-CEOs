@@ -66,7 +66,7 @@ export default function ConnectForm() {
           {pending ? "Sending…" : "I’m interested"}
         </button>
       </div>
-      {result && !result.success && (
+      {result && !result.success && "error" in result && (
         <p className="mt-3 text-red-400 text-sm">{result.error}</p>
       )}
     </form>
