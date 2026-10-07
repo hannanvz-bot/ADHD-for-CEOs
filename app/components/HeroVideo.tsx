@@ -31,11 +31,8 @@ export default function HeroVideo() {
         aria-hidden="true"
       />
 
-      {/* Base dark overlay — ensures text is always readable regardless of video frame */}
-      <div
-        className="absolute inset-0 bg-black/40"
-        aria-hidden="true"
-      />
+      {/* Base dark overlay */}
+      <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
 
       {/* Gradient — stronger bottom fade */}
       <div
@@ -54,12 +51,28 @@ export default function HeroVideo() {
             adhdceos.org
           </p>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.0] tracking-tight">
-            Maybe you were<br />
-            never the problem.
+            Different minds.<br />
+            Extraordinary things.
           </h1>
-          <p className="mt-6 text-white/50 text-base md:text-lg font-light max-w-md leading-relaxed">
-            A community for ADHD entrepreneurs, founders, and unconventional thinkers.
+          <p className="mt-4 text-white/60 text-lg md:text-xl font-light max-w-md leading-relaxed">
+            Maybe you were never the problem.
           </p>
+
+          {/* CTAs */}
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <a
+              href="#hackathon"
+              className="inline-flex items-center justify-center bg-[#2bbfbf] hover:bg-[#25aaaa] text-black font-bold text-sm tracking-wide rounded-full px-8 py-4 transition-colors duration-200"
+            >
+              I WANT TO BUILD
+            </a>
+            <a
+              href="#help"
+              className="inline-flex items-center justify-center bg-white/[0.08] hover:bg-white/[0.13] border border-white/20 text-white font-semibold text-sm tracking-wide rounded-full px-8 py-4 transition-colors duration-200"
+            >
+              I WANT TO HELP
+            </a>
+          </div>
         </div>
       </div>
 
