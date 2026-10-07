@@ -243,7 +243,7 @@ export default function Home() {
                   aria-hidden="true"
                 />
                 <p className="absolute bottom-4 left-4 text-white/40 text-xs tracking-wide">
-                  Hackathon AgroInChange · 42 Málaga, 2024
+                  Hackathon LaVegaInnova · Madrid, 2024
                 </p>
               </div>
             </div>
