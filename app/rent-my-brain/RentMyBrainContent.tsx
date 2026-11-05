@@ -5,6 +5,88 @@ import Nav from "../components/Nav";
 import FadeIn from "../components/FadeIn";
 import { type Lang } from "../components/LanguageToggle";
 
+// ─── Brain visual component ───────────────────────────────────────────────────
+function BrainSVG() {
+  return (
+    <div className="relative w-full h-full">
+      {/* Outer pulse rings */}
+      <div className="absolute inset-0 rounded-full border border-[#2bbfbf]/10 animate-ping" style={{ animationDuration: "3s" }} />
+      <div className="absolute inset-4 rounded-full border border-[#2bbfbf]/8 animate-ping" style={{ animationDuration: "3.6s", animationDelay: "0.5s" }} />
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" aria-hidden="true">
+        <defs>
+          <radialGradient id="brainGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#2bbfbf" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="#2bbfbf" stopOpacity="0" />
+          </radialGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+            <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <filter id="glowSoft">
+            <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+            <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
+        <circle cx="200" cy="200" r="180" fill="url(#brainGlow)" />
+        <path d="M200 95 C175 90 155 95 140 108 C120 125 110 148 108 168 C105 188 108 205 112 218 C118 238 128 252 135 262 C145 275 152 282 155 290 C158 298 158 308 160 316 C162 322 165 326 170 328 C175 330 182 329 188 327 C194 325 198 320 200 316"
+          stroke="#2bbfbf" strokeWidth="1.5" strokeOpacity="0.4" strokeLinecap="round" fill="none" filter="url(#glowSoft)" />
+        <path d="M200 95 C225 90 245 95 260 108 C280 125 290 148 292 168 C295 188 292 205 288 218 C282 238 272 252 265 262 C255 275 248 282 245 290 C242 298 242 308 240 316 C238 322 235 326 230 328 C225 330 218 329 212 327 C206 325 202 320 200 316"
+          stroke="#2bbfbf" strokeWidth="1.5" strokeOpacity="0.4" strokeLinecap="round" fill="none" filter="url(#glowSoft)" />
+        <path d="M200 95 C198 120 198 160 200 200 C202 240 202 280 200 316"
+          stroke="#2bbfbf" strokeWidth="0.8" strokeOpacity="0.2" strokeLinecap="round" strokeDasharray="4 6" fill="none" />
+        {[
+          ["145 145","175 165"],["175 165","200 155"],["200 155","228 160"],
+          ["228 160","255 148"],["145 145","160 190"],["175 165","185 210"],
+          ["200 155","200 210"],["228 160","218 205"],["255 148","248 190"],
+          ["160 190","185 210"],["185 210","200 210"],["200 210","218 205"],
+          ["218 205","248 190"],["160 190","155 235"],["185 210","178 250"],
+          ["200 210","200 255"],["218 205","222 248"],["248 190","245 232"],
+          ["155 235","178 250"],["178 250","200 255"],["200 255","222 248"],
+          ["222 248","245 232"],["145 145","130 175"],["255 148","270 178"],
+          ["130 175","155 235"],["270 178","245 232"],
+        ].map(([a,b],i) => (
+          <line key={i} x1={a.split(" ")[0]} y1={a.split(" ")[1]} x2={b.split(" ")[0]} y2={b.split(" ")[1]}
+            stroke="#2bbfbf" strokeWidth="0.7" strokeOpacity="0.18" />
+        ))}
+        {[[145,145],[130,175],[155,235],[255,148],[270,178],[245,232],[160,190],[248,190]].map(([x,y],i) => (
+          <circle key={i} cx={x} cy={y} r="2.5" fill="#2bbfbf" fillOpacity="0.15" />
+        ))}
+        {[{x:175,y:165,d:"0s"},{x:200,y:155,d:"0.4s"},{x:228,y:160,d:"0.8s"},
+          {x:185,y:210,d:"1.1s"},{x:200,y:210,d:"0.6s"},{x:218,y:205,d:"1.4s"},
+          {x:178,y:250,d:"1.8s"},{x:200,y:255,d:"0.3s"},{x:222,y:248,d:"1.0s"},
+        ].map((n,i) => (
+          <g key={i}>
+            <circle cx={n.x} cy={n.y} r="5" fill="#2bbfbf" fillOpacity="0.08" filter="url(#glow)">
+              <animate attributeName="r" values="4;7;4" dur="2.5s" begin={n.d} repeatCount="indefinite" />
+              <animate attributeName="fill-opacity" values="0.08;0.2;0.08" dur="2.5s" begin={n.d} repeatCount="indefinite" />
+            </circle>
+            <circle cx={n.x} cy={n.y} r="2" fill="#2bbfbf" fillOpacity="0.7" filter="url(#glow)">
+              <animate attributeName="fill-opacity" values="0.5;1;0.5" dur="2.5s" begin={n.d} repeatCount="indefinite" />
+            </circle>
+          </g>
+        ))}
+        <circle r="3" fill="#2bbfbf" fillOpacity="0.9" filter="url(#glow)">
+          <animateMotion dur="4s" repeatCount="indefinite" path="M175,165 L200,155 L228,160 L218,205 L200,210 L185,210 L178,250 L200,255 L222,248 L245,232 L248,190 L228,160" />
+          <animate attributeName="fill-opacity" values="0;0.9;0.9;0" dur="4s" repeatCount="indefinite" />
+        </circle>
+        <circle r="3" fill="#2bbfbf" fillOpacity="0.9" filter="url(#glow)">
+          <animateMotion dur="4s" begin="2s" repeatCount="indefinite" path="M145,145 L160,190 L155,235 L178,250 L200,255 L200,210 L200,155 L175,165 L145,145" />
+          <animate attributeName="fill-opacity" values="0;0.9;0.9;0" dur="4s" begin="2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="200" cy="200" r="4" fill="#2bbfbf" fillOpacity="0.3" filter="url(#glow)">
+          <animate attributeName="r" values="3;6;3" dur="3s" repeatCount="indefinite" />
+          <animate attributeName="fill-opacity" values="0.2;0.5;0.2" dur="3s" repeatCount="indefinite" />
+        </circle>
+      </svg>
+      {/* Floating label chips — only on desktop where there's room */}
+      <div className="hidden md:block absolute top-[18%] left-[-8%] text-[9px] font-bold tracking-[0.2em] text-[#2bbfbf]/60 uppercase border border-[#2bbfbf]/15 rounded-full px-3 py-1 bg-[#080808]/80 backdrop-blur-sm">STRATEGY</div>
+      <div className="hidden md:block absolute top-[35%] right-[-10%] text-[9px] font-bold tracking-[0.2em] text-[#2bbfbf]/60 uppercase border border-[#2bbfbf]/15 rounded-full px-3 py-1 bg-[#080808]/80 backdrop-blur-sm">DESIGN</div>
+      <div className="hidden md:block absolute bottom-[28%] left-[-12%] text-[9px] font-bold tracking-[0.2em] text-[#2bbfbf]/60 uppercase border border-[#2bbfbf]/15 rounded-full px-3 py-1 bg-[#080808]/80 backdrop-blur-sm">BUILD</div>
+      <div className="hidden md:block absolute bottom-[15%] right-[-8%] text-[9px] font-bold tracking-[0.2em] text-[#2bbfbf]/60 uppercase border border-[#2bbfbf]/15 rounded-full px-3 py-1 bg-[#080808]/80 backdrop-blur-sm">RESEARCH</div>
+    </div>
+  );
+}
+
 // ─── Translations ─────────────────────────────────────────────────────────────
 
 const t = {
@@ -401,6 +483,13 @@ export default function RentMyBrainContent() {
         {/* Glow behind brain */}
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#2bbfbf] opacity-[0.06] blur-[140px] pointer-events-none" aria-hidden="true" />
 
+        {/* Brain visual — absolute on mobile (bg), grid column on desktop */}
+        <FadeIn delay={180}>
+          <div className="absolute right-[-60px] top-1/2 -translate-y-1/2 w-[340px] h-[340px] opacity-25 md:opacity-100 md:hidden pointer-events-none" aria-hidden="true">
+            <BrainSVG />
+          </div>
+        </FadeIn>
+
         <div className="max-w-7xl mx-auto w-full relative z-10 grid md:grid-cols-2 gap-12 md:gap-8 items-center">
           {/* Left: text */}
           <div>
@@ -432,124 +521,11 @@ export default function RentMyBrainContent() {
             </FadeIn>
           </div>
 
-          {/* Right: futuristic brain visual */}
+          {/* Right: futuristic brain visual — desktop only grid column */}
           <FadeIn delay={180}>
-            <div className="flex items-center justify-center md:justify-end">
-              <div className="relative w-[320px] h-[320px] md:w-[420px] md:h-[420px]">
-                {/* Outer pulse rings */}
-                <div className="absolute inset-0 rounded-full border border-[#2bbfbf]/10 animate-ping" style={{ animationDuration: "3s" }} />
-                <div className="absolute inset-4 rounded-full border border-[#2bbfbf]/8 animate-ping" style={{ animationDuration: "3.6s", animationDelay: "0.5s" }} />
-
-                {/* Neural brain SVG */}
-                <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" aria-hidden="true">
-                  <defs>
-                    <radialGradient id="brainGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#2bbfbf" stopOpacity="0.15" />
-                      <stop offset="100%" stopColor="#2bbfbf" stopOpacity="0" />
-                    </radialGradient>
-                    <filter id="glow">
-                      <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                      <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                    </filter>
-                    <filter id="glowSoft">
-                      <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
-                      <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                    </filter>
-                  </defs>
-
-                  {/* Background radial glow */}
-                  <circle cx="200" cy="200" r="180" fill="url(#brainGlow)" />
-
-                  {/* Brain outline — left hemisphere */}
-                  <path d="M200 95 C175 90 155 95 140 108 C120 125 110 148 108 168 C105 188 108 205 112 218 C118 238 128 252 135 262 C145 275 152 282 155 290 C158 298 158 308 160 316 C162 322 165 326 170 328 C175 330 182 329 188 327 C194 325 198 320 200 316"
-                    stroke="#2bbfbf" strokeWidth="1.5" strokeOpacity="0.4" strokeLinecap="round" fill="none" filter="url(#glowSoft)" />
-
-                  {/* Brain outline — right hemisphere */}
-                  <path d="M200 95 C225 90 245 95 260 108 C280 125 290 148 292 168 C295 188 292 205 288 218 C282 238 272 252 265 262 C255 275 248 282 245 290 C242 298 242 308 240 316 C238 322 235 326 230 328 C225 330 218 329 212 327 C206 325 202 320 200 316"
-                    stroke="#2bbfbf" strokeWidth="1.5" strokeOpacity="0.4" strokeLinecap="round" fill="none" filter="url(#glowSoft)" />
-
-                  {/* Center divide */}
-                  <path d="M200 95 C198 120 198 160 200 200 C202 240 202 280 200 316"
-                    stroke="#2bbfbf" strokeWidth="0.8" strokeOpacity="0.2" strokeLinecap="round" strokeDasharray="4 6" fill="none" />
-
-                  {/* Neural connection lines */}
-                  {[
-                    ["145 145", "175 165"], ["175 165", "200 155"], ["200 155", "228 160"],
-                    ["228 160", "255 148"], ["145 145", "160 190"], ["175 165", "185 210"],
-                    ["200 155", "200 210"], ["228 160", "218 205"], ["255 148", "248 190"],
-                    ["160 190", "185 210"], ["185 210", "200 210"], ["200 210", "218 205"],
-                    ["218 205", "248 190"], ["160 190", "155 235"], ["185 210", "178 250"],
-                    ["200 210", "200 255"], ["218 205", "222 248"], ["248 190", "245 232"],
-                    ["155 235", "178 250"], ["178 250", "200 255"], ["200 255", "222 248"],
-                    ["222 248", "245 232"], ["145 145", "130 175"], ["255 148", "270 178"],
-                    ["130 175", "155 235"], ["270 178", "245 232"],
-                  ].map(([a, b], i) => (
-                    <line key={i} x1={a.split(" ")[0]} y1={a.split(" ")[1]} x2={b.split(" ")[0]} y2={b.split(" ")[1]}
-                      stroke="#2bbfbf" strokeWidth="0.7" strokeOpacity="0.18" />
-                  ))}
-
-                  {/* Neural nodes — dim */}
-                  {[
-                    [145,145],[130,175],[155,235],
-                    [255,148],[270,178],[245,232],
-                    [160,190],[248,190],
-                  ].map(([x,y], i) => (
-                    <circle key={i} cx={x} cy={y} r="2.5" fill="#2bbfbf" fillOpacity="0.15" />
-                  ))}
-
-                  {/* Neural nodes — bright, animated */}
-                  {[
-                    { x:175, y:165, d:"0s" },
-                    { x:200, y:155, d:"0.4s" },
-                    { x:228, y:160, d:"0.8s" },
-                    { x:185, y:210, d:"1.1s" },
-                    { x:200, y:210, d:"0.6s" },
-                    { x:218, y:205, d:"1.4s" },
-                    { x:178, y:250, d:"1.8s" },
-                    { x:200, y:255, d:"0.3s" },
-                    { x:222, y:248, d:"1.0s" },
-                  ].map((n, i) => (
-                    <g key={i}>
-                      <circle cx={n.x} cy={n.y} r="5" fill="#2bbfbf" fillOpacity="0.08" filter="url(#glow)">
-                        <animate attributeName="r" values="4;7;4" dur="2.5s" begin={n.d} repeatCount="indefinite" />
-                        <animate attributeName="fill-opacity" values="0.08;0.2;0.08" dur="2.5s" begin={n.d} repeatCount="indefinite" />
-                      </circle>
-                      <circle cx={n.x} cy={n.y} r="2" fill="#2bbfbf" fillOpacity="0.7" filter="url(#glow)">
-                        <animate attributeName="fill-opacity" values="0.5;1;0.5" dur="2.5s" begin={n.d} repeatCount="indefinite" />
-                      </circle>
-                    </g>
-                  ))}
-
-                  {/* Signal pulse traveling along a path */}
-                  <circle r="3" fill="#2bbfbf" fillOpacity="0.9" filter="url(#glow)">
-                    <animateMotion dur="4s" repeatCount="indefinite" path="M175,165 L200,155 L228,160 L218,205 L200,210 L185,210 L178,250 L200,255 L222,248 L245,232 L248,190 L228,160" />
-                    <animate attributeName="fill-opacity" values="0;0.9;0.9;0" dur="4s" repeatCount="indefinite" />
-                  </circle>
-                  <circle r="3" fill="#2bbfbf" fillOpacity="0.9" filter="url(#glow)">
-                    <animateMotion dur="4s" begin="2s" repeatCount="indefinite" path="M145,145 L160,190 L155,235 L178,250 L200,255 L200,210 L200,155 L175,165 L145,145" />
-                    <animate attributeName="fill-opacity" values="0;0.9;0.9;0" dur="4s" begin="2s" repeatCount="indefinite" />
-                  </circle>
-
-                  {/* Center bright core */}
-                  <circle cx="200" cy="200" r="4" fill="#2bbfbf" fillOpacity="0.3" filter="url(#glow)">
-                    <animate attributeName="r" values="3;6;3" dur="3s" repeatCount="indefinite" />
-                    <animate attributeName="fill-opacity" values="0.2;0.5;0.2" dur="3s" repeatCount="indefinite" />
-                  </circle>
-                </svg>
-
-                {/* Floating label chips */}
-                <div className="absolute top-[18%] left-[-8%] text-[9px] font-bold tracking-[0.2em] text-[#2bbfbf]/60 uppercase border border-[#2bbfbf]/15 rounded-full px-3 py-1 bg-[#080808]/80 backdrop-blur-sm">
-                  STRATEGY
-                </div>
-                <div className="absolute top-[35%] right-[-10%] text-[9px] font-bold tracking-[0.2em] text-[#2bbfbf]/60 uppercase border border-[#2bbfbf]/15 rounded-full px-3 py-1 bg-[#080808]/80 backdrop-blur-sm">
-                  DESIGN
-                </div>
-                <div className="absolute bottom-[28%] left-[-12%] text-[9px] font-bold tracking-[0.2em] text-[#2bbfbf]/60 uppercase border border-[#2bbfbf]/15 rounded-full px-3 py-1 bg-[#080808]/80 backdrop-blur-sm">
-                  BUILD
-                </div>
-                <div className="absolute bottom-[15%] right-[-8%] text-[9px] font-bold tracking-[0.2em] text-[#2bbfbf]/60 uppercase border border-[#2bbfbf]/15 rounded-full px-3 py-1 bg-[#080808]/80 backdrop-blur-sm">
-                  RESEARCH
-                </div>
+            <div className="hidden md:flex items-center justify-end">
+              <div className="relative w-[420px] h-[420px]">
+                <BrainSVG />
               </div>
             </div>
           </FadeIn>
