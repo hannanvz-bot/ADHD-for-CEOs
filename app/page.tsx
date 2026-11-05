@@ -757,6 +757,39 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Sponsors */}
+      <section className="py-16 md:py-24 px-6 md:px-10 border-t border-white/[0.06]">
+        <div className="max-w-7xl mx-auto">
+          <FadeIn>
+            <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
+              <div className="flex-shrink-0">
+                <p className="text-[10px] font-bold tracking-[0.35em] text-[#2bbfbf] uppercase mb-2">
+                  {lang === "en" ? "Sponsors & partners" : lang === "es" ? "Sponsors y partners" : "Sponsors & partenaires"}
+                </p>
+                <p className="text-white/25 text-xs">
+                  {lang === "en" ? "Thank you for making this possible." : lang === "es" ? "Gracias por hacer esto posible." : "Merci de rendre cela possible."}
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-6 md:gap-10">
+                {[
+                  { name: "Raimar-Repara.es", logo: "/sponsors/raimar.jpg", url: "https://raimar-repara.es" },
+                  { name: "AgroCarbonX.es", logo: "/sponsors/agrocarbonx.jpg", url: "https://agrocarbonx.es" },
+                  { name: "AdherAI.es", logo: "/sponsors/adherai.jpg", url: "https://adherai.es" },
+                  { name: "Ostal.es", logo: "/sponsors/ostal.jpg", url: "https://ostal.es" },
+                ].map((s) => (
+                  <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
+                    className="opacity-40 hover:opacity-70 transition-opacity duration-300 flex items-center"
+                    aria-label={s.name}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={s.logo} alt={s.name} className="h-8 md:h-10 w-auto object-contain" style={{ filter: "grayscale(100%) brightness(200%)" }} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* 8. Final close */}
       <section className="py-28 md:py-44 px-6 md:px-10 border-t border-white/[0.06] text-center">
         <FadeIn>
