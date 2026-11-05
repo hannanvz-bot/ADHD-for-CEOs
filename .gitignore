@@ -1,2 +1,16 @@
+# Vercel
 .vercel
+
+# Environment variables
 .env*
+
+# Next.js build output
+.next/
+out/
+
+# Dependencies
+node_modules/
+
+# TypeScript generated files
+next-env.d.ts
+tsconfig.json
