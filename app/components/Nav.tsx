@@ -1,8 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import LanguageToggle, { type Lang } from "./LanguageToggle";
 
-export default function Nav() {
+interface Props {
+  lang?: Lang;
+  onLangChange?: (lang: Lang) => void;
+}
+
+export default function Nav({ lang, onLangChange }: Props) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -21,13 +27,12 @@ export default function Nav() {
       aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
-        {/* Wordmark — rendered in CSS, always white */}
+        {/* Wordmark */}
         <a
-          href="#top"
+          href="/"
           className="flex items-center gap-2 group"
           aria-label="ADHD for CEOs home"
         >
-          {/* AC monogram */}
           <svg
             width="32"
             height="22"
@@ -55,10 +60,13 @@ export default function Nav() {
           </span>
         </a>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
+          {lang && onLangChange && (
+            <LanguageToggle current={lang} onChange={onLangChange} />
+          )}
           <a
             href="/rent-my-brain"
-            className="text-xs font-semibold tracking-widest uppercase text-white/70 hover:text-[#2bbfbf] transition-colors duration-300"
+            className="hidden sm:block text-xs font-semibold tracking-widest uppercase text-white/70 hover:text-[#2bbfbf] transition-colors duration-300"
           >
             Rent My Brain
           </a>
@@ -66,7 +74,7 @@ export default function Nav() {
             href="#connect"
             className="text-xs font-semibold tracking-widest uppercase text-white/70 hover:text-[#2bbfbf] transition-colors duration-300"
           >
-            Join the community
+            Join
           </a>
         </div>
       </div>
