@@ -476,59 +476,57 @@ export default function RentMyBrainContent() {
       <Nav lang={lang} onLangChange={setLang} />
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[90vh] flex items-center px-6 md:px-10 pt-28 pb-16 overflow-hidden">
+      <section className="relative px-6 md:px-10 pt-28 pb-16 overflow-hidden">
         {/* Background grid */}
         <div className="absolute inset-0 opacity-[0.025]" aria-hidden="true"
           style={{ backgroundImage: "linear-gradient(#2bbfbf 1px,transparent 1px),linear-gradient(90deg,#2bbfbf 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
-        {/* Glow behind brain */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#2bbfbf] opacity-[0.06] blur-[140px] pointer-events-none" aria-hidden="true" />
+        {/* Glow */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#2bbfbf] opacity-[0.06] blur-[140px] pointer-events-none" aria-hidden="true" />
 
-        {/* Brain visual — absolute on mobile (bg), grid column on desktop */}
-        <FadeIn delay={180}>
-          <div className="absolute right-[-60px] top-1/2 -translate-y-1/2 w-[340px] h-[340px] opacity-25 md:opacity-100 md:hidden pointer-events-none" aria-hidden="true">
-            <BrainSVG />
-          </div>
-        </FadeIn>
+        <div className="max-w-7xl mx-auto w-full relative z-10">
+          {/* Desktop: 2-col grid. Mobile: single col stack */}
+          <div className="grid md:grid-cols-2 gap-8 md:gap-8 items-center min-h-[80vh]">
 
-        <div className="max-w-7xl mx-auto w-full relative z-10 grid md:grid-cols-2 gap-12 md:gap-8 items-center">
-          {/* Left: text */}
-          <div>
-            <FadeIn>
-              <p className="text-[10px] font-bold tracking-[0.35em] text-[#2bbfbf] uppercase mb-8">{c.present}</p>
-            </FadeIn>
-            <FadeIn delay={60}>
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] tracking-tight mb-8">
-                {c.heroTitle}
-              </h1>
-            </FadeIn>
-            <FadeIn delay={140}>
-              <p className="text-xl text-white/50 font-light max-w-md leading-relaxed mb-12">
-                {c.heroSub}
-              </p>
-            </FadeIn>
-            <FadeIn delay={200}>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#need-a-brain" className="inline-flex items-center justify-center bg-[#2bbfbf] hover:bg-[#25aaaa] text-black font-bold text-sm tracking-widest rounded-full px-10 py-5 transition-colors duration-200">
-                  {c.ctaNeedBrain}
-                </a>
-                <a href="#am-a-brain" className="inline-flex items-center justify-center bg-white/[0.06] hover:bg-white/[0.1] border border-white/15 text-white font-semibold text-sm tracking-widest rounded-full px-10 py-5 transition-colors duration-200">
-                  {c.ctaAmBrain}
-                </a>
-              </div>
-            </FadeIn>
-            <FadeIn delay={280}>
-              <p className="mt-10 text-white/20 text-xs tracking-widest">{c.heroBadge}</p>
-            </FadeIn>
-          </div>
-
-          {/* Right: futuristic brain visual — desktop only grid column */}
-          <FadeIn delay={180}>
-            <div className="hidden md:flex items-center justify-end">
-              <div className="relative w-[420px] h-[420px]">
-                <BrainSVG />
-              </div>
+            {/* Left: text */}
+            <div className="flex flex-col justify-center">
+              <FadeIn>
+                <p className="text-[10px] font-bold tracking-[0.35em] text-[#2bbfbf] uppercase mb-8">{c.present}</p>
+              </FadeIn>
+              <FadeIn delay={60}>
+                <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] tracking-tight mb-8">
+                  {c.heroTitle}
+                </h1>
+              </FadeIn>
+              <FadeIn delay={140}>
+                <p className="text-xl text-white/50 font-light max-w-md leading-relaxed mb-10">
+                  {c.heroSub}
+                </p>
+              </FadeIn>
+              <FadeIn delay={200}>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a href="#need-a-brain" className="inline-flex items-center justify-center bg-[#2bbfbf] hover:bg-[#25aaaa] text-black font-bold text-sm tracking-widest rounded-full px-10 py-5 transition-colors duration-200">
+                    {c.ctaNeedBrain}
+                  </a>
+                  <a href="#am-a-brain" className="inline-flex items-center justify-center bg-white/[0.06] hover:bg-white/[0.1] border border-white/15 text-white font-semibold text-sm tracking-widest rounded-full px-10 py-5 transition-colors duration-200">
+                    {c.ctaAmBrain}
+                  </a>
+                </div>
+              </FadeIn>
+              <FadeIn delay={280}>
+                <p className="mt-8 text-white/20 text-xs tracking-widest">{c.heroBadge}</p>
+              </FadeIn>
             </div>
-          </FadeIn>
+
+            {/* Right: brain — visible on BOTH mobile and desktop */}
+            <FadeIn delay={180}>
+              <div className="flex items-center justify-center md:justify-end py-8 md:py-0">
+                <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[420px] md:h-[420px]">
+                  <BrainSVG />
+                </div>
+              </div>
+            </FadeIn>
+
+          </div>
         </div>
       </section>
 
