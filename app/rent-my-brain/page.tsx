@@ -418,7 +418,6 @@ export default function RentMyBrain() {
               className="space-y-5"
               action="https://formspree.io/f/rentmybrain-challenger"
               method="POST"
-              onSubmit={(e) => e.preventDefault()}
             >
               <div>
                 <label className="block text-white/40 text-xs tracking-widest uppercase mb-2">
@@ -534,7 +533,6 @@ export default function RentMyBrain() {
               className="space-y-5"
               action="https://formspree.io/f/rentmybrain-brain"
               method="POST"
-              onSubmit={(e) => e.preventDefault()}
             >
               <div className="grid grid-cols-2 gap-4">
                 <div>

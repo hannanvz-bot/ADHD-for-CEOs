@@ -55,12 +55,20 @@ export default function Nav() {
           </span>
         </a>
 
-        <a
-          href="#connect"
-          className="text-xs font-semibold tracking-widest uppercase text-white/70 hover:text-[#2bbfbf] transition-colors duration-300"
-        >
-          Join the community
-        </a>
+        <div className="flex items-center gap-6">
+          <a
+            href="/rent-my-brain"
+            className="text-xs font-semibold tracking-widest uppercase text-white/70 hover:text-[#2bbfbf] transition-colors duration-300"
+          >
+            Rent My Brain
+          </a>
+          <a
+            href="#connect"
+            className="text-xs font-semibold tracking-widest uppercase text-white/70 hover:text-[#2bbfbf] transition-colors duration-300"
+          >
+            Join the community
+          </a>
+        </div>
       </div>
     </nav>
   );
